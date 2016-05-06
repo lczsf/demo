@@ -18,7 +18,7 @@ public class AddressController {
     @Resource
     private AddressService addressService;
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add")
     public String addressAdd(@Param("content") String content) {
         System.out.print("=====enter======");
         Address address = new Address();
