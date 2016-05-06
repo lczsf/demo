@@ -38,7 +38,7 @@
     </bean>
     <!-- 用MapperScannerConfigurer代替
         <bean id="addressDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-            <property name="mapperInterface" value="com.company.mapper.AddressMapper"></property>
+            <property name="mapperInterface" value="com.com.company.controller.mapper.AddressMapper"></property>
             <property name="sqlSessionFactory" ref="sessionFactory"></property>
         </bean>
     -->

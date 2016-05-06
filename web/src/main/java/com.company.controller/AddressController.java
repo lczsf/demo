@@ -1,4 +1,4 @@
-package com.company;
+package com.company.controller;
 
 import com.company.model.Address;
 import com.company.service.AddressService;

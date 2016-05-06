@@ -7,7 +7,7 @@
   <display-name>springmvc</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>WEB-INF/beans/beans-*.xml</param-value>
+    <param-value>classpath*:beans/beans-*.xml</param-value>
   </context-param>
   <servlet>
     <servlet-name>springMVC</servlet-name>
