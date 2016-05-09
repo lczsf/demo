@@ -145,6 +145,7 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>8.1.15.v20140411</version>
 				<configuration>
+					<!-- 添加这行 -->
 					<connectors>
 						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
 							<port>8089</port>
