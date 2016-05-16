@@ -9,14 +9,14 @@ $(document).ready(function () {
         },
         listUser: function () {
             //var data = {address: {id: 1, content: 2}};
-            var data = GetJsonData();
-            data = JSON.stringify(data);
+            var data = {"pageNum": "1", "pageSize": "2"};
+            //data = ;
             $.ajax({
                 url: 'queryPage',
                 type: 'POST',//注意在传参数时，加：_method:'PATCH'　将对应后台的PATCH请求方法
                 contentType: 'application/json',
                 dataType: 'json',
-                data: data,
+                data: JSON.stringify(data),
                 success: function (data) {
                     var body = $('table#info');
                     data = data.result;
@@ -45,7 +45,7 @@ $(document).ready(function () {
 });
 
 function GetJsonData() {
-    var json ={pageVo: {pageNum: 1, pageSize: 2}};
+    var json = "";
     return json;
 }
 

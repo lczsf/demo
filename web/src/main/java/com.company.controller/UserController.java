@@ -4,6 +4,7 @@ import com.company.common.Page;
 import com.company.common.PageVo;
 import com.company.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,7 +23,7 @@ public class UserController {
     @RequestMapping(value = "/queryPage", method = RequestMethod.POST,
             consumes = "application/json")
     @ResponseBody
-    public Page queryPage(@RequestBody PageVo pageVo) {
+    public Page queryPage(@RequestBody(required = true) PageVo pageVo) {
         Page page = new Page(pageVo.getPageNum(), pageVo.getPageSize());
         return userService.queryPage(page);
     }

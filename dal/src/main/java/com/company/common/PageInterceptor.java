@@ -27,8 +27,6 @@ public class PageInterceptor implements Interceptor {
     public static final ThreadLocal<Page> localPage = new ThreadLocal<Page>();
 
     /**
-     * ��ʼ��ҳ
-     *
      * @param pageNum
      * @param pageSize
      */
@@ -37,8 +35,6 @@ public class PageInterceptor implements Interceptor {
     }
 
     /**
-     * ������ҳ
-     *
      * @return
      */
     public static Page endPage() {
