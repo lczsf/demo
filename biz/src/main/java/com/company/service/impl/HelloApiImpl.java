@@ -1,7 +1,7 @@
 package com.company.service.impl;
 
 import com.company.service.HelloApi;
-import com.company.service.UserApi;
+import com.company.service.UserService;
 
 import javax.annotation.Resource;
 
@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 public class HelloApiImpl implements HelloApi {
 
     @Resource
-    private UserApi userApi;
+    private UserService userApi;
 
     @Override
     public void sayHello() {
@@ -23,11 +23,11 @@ public class HelloApiImpl implements HelloApi {
         userApi.addUser();
     }
 
-    public UserApi getUserApi() {
+    public UserService getUserApi() {
         return userApi;
     }
 
-    public void setUserApi(UserApi userApi) {
+    public void setUserApi(UserService userApi) {
         this.userApi = userApi;
     }
 }

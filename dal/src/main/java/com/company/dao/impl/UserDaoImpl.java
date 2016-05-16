@@ -1,7 +1,15 @@
 package com.company.dao.impl;
 
+import com.company.common.Page;
+import com.company.common.PageInterceptor;
 import com.company.dao.UserDao;
+import com.company.mapper.UserMapperExt;
+import com.company.model.User;
+import com.company.model.UserExample;
 import com.company.model.UserModel;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by wb-lichao.x on 2016/4/8.  extends NamedParameterJdbcDaoSupport
@@ -9,6 +17,9 @@ import com.company.model.UserModel;
 public class UserDaoImpl implements UserDao {
     private static final String INSERT_SQL = "insert into user(name) values(:name)";
     private static final String COUNT_SQL = "select count(*) from user";
+
+    @Resource
+    private UserMapperExt userMapperExt;
 
     @Override
     public void save(UserModel userModel) {
@@ -24,5 +35,20 @@ public class UserDaoImpl implements UserDao {
         // }
         // return result.size();
         return 1;
+    }
+
+    @Override
+    public List<User> queryAll() {
+        return userMapperExt.selectByExample(new UserExample());
+    }
+
+    @Override
+    public Page queryPage(Page page) {
+        PageInterceptor.startPage(page.getPageNum(), page.getPageSize());
+        UserExample example = new UserExample();
+        List<User> users = userMapperExt.selectForPage(example);
+        page.setResult(users);
+        PageInterceptor.endPage();
+        return page;
     }
 }

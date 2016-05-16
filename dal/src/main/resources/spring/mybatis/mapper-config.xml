@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
+    <plugins>
+        <plugin interceptor="com.company.common.PageInterceptor"></plugin>
+    </plugins>
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/UserMapperExt.xml"/>
         <mapper resource="mapper/AddressMapper.xml"/>
         <mapper resource="mapper/AddressMapperExt.xml"/>
     </mappers>

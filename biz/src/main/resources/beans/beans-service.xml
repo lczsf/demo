@@ -9,6 +9,6 @@
        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
        default-autowire="byName">
     <context:annotation-config/>
-    <bean class="com.company.service.impl.AddressServiceImpl">
-    </bean>
+    <bean class="com.company.service.impl.AddressServiceImpl"/>
+    <bean class="com.company.service.impl.UserServiceImpl"/>
 </beans>

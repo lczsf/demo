@@ -12,4 +12,5 @@
     <!--dataSource-->
     <import resource="classpath*:spring/jdbc/datasource.xml"></import>
     <bean class="com.company.dao.impl.AddressDaoImpl"></bean>
+    <bean class="com.company.dao.impl.UserDaoImpl"/>
 </beans>
