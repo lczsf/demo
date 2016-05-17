@@ -2,6 +2,7 @@ package com.company.dao;
 
 import com.company.common.Page;
 import com.company.model.User;
+import com.company.model.UserExample;
 import com.company.model.UserModel;
 
 import java.util.List;
@@ -16,5 +17,5 @@ public interface UserDao {
 
     List<User> queryAll();
 
-    Page queryPage(Page page);
+    Page queryPage(UserExample userExample, Page page);
 }

@@ -27,12 +27,14 @@
     <div style="width:800px;margin-left: auto;margin-right: auto;">
         <fieldset class="uk-form">
             <legend align="left">Condition</legend>
-            <input type="text" placeholder="">
+            Age:<input id="age" type="text" placeholder="">
             <button id="btnList" class="uk-button">Query</button>
         </fieldset>
     </div>
     <div id="list">
         <table id="info" class='uk-table'>
+            <caption>caption_info</caption>
+            <tfoot><tr><td>table_foot</td></tr></tfoot>
         </table>
     </div>
 </div>

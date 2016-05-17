@@ -5,6 +5,7 @@ import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
@@ -14,6 +15,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -27,11 +29,11 @@ public class PageInterceptor implements Interceptor {
     public static final ThreadLocal<Page> localPage = new ThreadLocal<Page>();
 
     /**
-     * @param pageNum
-     * @param pageSize
+     * @param page
+     * @param
      */
-    public static void startPage(int pageNum, int pageSize) {
-        localPage.set(new Page(pageNum, pageSize));
+    public static void startPage(Page page) {
+        localPage.set(page);
     }
 
     /**
@@ -129,7 +131,9 @@ public class PageInterceptor implements Interceptor {
             countStmt = connection.prepareStatement(countSql);
             BoundSql countBS = new BoundSql(mappedStatement.getConfiguration(), countSql,
                     boundSql.getParameterMappings(), boundSql.getParameterObject());
+            setAddtionalParameters(boundSql, countBS);
             setParameters(countStmt, mappedStatement, countBS, boundSql.getParameterObject());
+
             rs = countStmt.executeQuery();
             int totalCount = 0;
             if (rs.next()) {
@@ -179,4 +183,16 @@ public class PageInterceptor implements Interceptor {
         }
     }
 
+    private void setAddtionalParameters(BoundSql boundSql, BoundSql countBS) {
+        List<ParameterMapping> parameterMappings = countBS.getParameterMappings();
+        if (parameterMappings != null) {
+            for (int i = 0; i < parameterMappings.size(); i++) {
+                ParameterMapping parameterMapping = parameterMappings.get(i);
+                String propertyName = parameterMapping.getProperty();
+                if (boundSql.hasAdditionalParameter(propertyName)) {
+                    countBS.setAdditionalParameter(propertyName, boundSql.getAdditionalParameter(propertyName));
+                }
+            }
+        }
+    }
 }

@@ -43,10 +43,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Page queryPage(Page page) {
-        PageInterceptor.startPage(page.getPageNum(), page.getPageSize());
-        UserExample example = new UserExample();
-        List<User> users = userMapperExt.selectForPage(example);
+    public Page queryPage(UserExample userExample, Page page) {
+        PageInterceptor.startPage(page);
+        List<User> users = userMapperExt.selectForPage(userExample);
         page.setResult(users);
         PageInterceptor.endPage();
         return page;

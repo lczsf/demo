@@ -8,8 +8,9 @@ $(document).ready(function () {
             $("#btnList").click(dekota.listUser);
         },
         listUser: function () {
-            //var data = {address: {id: 1, content: 2}};
-            var data = {"pageNum": "1", "pageSize": "2"};
+            //var data = {address: {id: 1, content: 5}};
+            var age=$("input#age").val().trim();
+            var data = {"age":"1","page":{"pageNum": "1", "pageSize": "5"}};
             //data = ;
             $.ajax({
                 url: 'queryPage',
@@ -21,14 +22,12 @@ $(document).ready(function () {
                     var body = $('table#info');
                     data = data.result;
                     if (data != null) {
-                        body.append("<caption>caption_info</caption>");//表格标题
                         body.append("<thead><tr><th>id</th><th>name</th><th>age</th></tr></thead>");//表格头
                         body.append("<tbody>");//表内容
                         $.each(data, function (index, item) {
                             OutputData(body, item);
                         })
                         body.append("</tbody>");//表内容
-                        body.append("<tfoot><tr><td>table_foot</td></tr></tfoot>");//表尾部
                     }
                 },
                 error: function (msg) {
@@ -41,13 +40,9 @@ $(document).ready(function () {
     window.dekota = (window.dekota) ? window.dekota : dekota;
     $(function () {
         dekota.init();
+        dekota.listUser();
     });
 });
-
-function GetJsonData() {
-    var json = "";
-    return json;
-}
 
 function OutputData(body, item) {
     var trs = "";
