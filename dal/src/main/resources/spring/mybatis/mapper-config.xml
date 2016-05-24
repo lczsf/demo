@@ -7,8 +7,8 @@
         <plugin interceptor="com.company.common.PageInterceptor"></plugin>
     </plugins>
     <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
-        <mapper resource="mapper/UserMapperExt.xml"/>
+        <mapper resource="mapper/TUserMapper.xml"/>
+        <mapper resource="mapper/TUserMapperExt.xml"/>
         <mapper resource="mapper/AddressMapper.xml"/>
         <mapper resource="mapper/AddressMapperExt.xml"/>
     </mappers>

@@ -12,5 +12,7 @@
     <!--dataSource-->
     <import resource="classpath*:spring/jdbc/datasource.xml"></import>
     <bean class="com.company.dao.impl.AddressDaoImpl"></bean>
-    <bean class="com.company.dao.impl.UserDaoImpl"/>
+    <bean class="com.company.dao.impl.TUserDaoImpl"/>
+    <bean class="com.company.dao.impl.TGroupRoleDaoImpl"/>
+    <bean class="com.company.dao.impl.TGroupUserDaoImpl"/>
 </beans>

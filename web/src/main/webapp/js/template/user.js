@@ -5,12 +5,20 @@ $(document).ready(function () {
     var dekota = {
         url: '',
         init: function () {
-            $("#btnList").click(dekota.listUser);
+            $("#btnList").click(dekota.list);
         },
-        listUser: function () {
+        list: function (pageNum, pageSize) {
             //var data = {address: {id: 1, content: 5}};
-            var age=$("input#age").val().trim();
-            var data = {"age":"1","page":{"pageNum": "1", "pageSize": "5"}};
+            var age = $("input#age").val().trim();
+            if (age != '') {
+                var data = {"user": {"age": age}, "page": {"pageNum": 1, "pageSize": 5}};
+            } else {
+                var data = {"page": {"pageNum": pageNum, "pageSize": pageSize}};//pageNum
+            }
+            var pageList = $('ul#pageList');
+            pageList.empty();
+            var body = $('table#info');
+            body.empty();
             //data = ;
             $.ajax({
                 url: 'queryPage',
@@ -19,15 +27,17 @@ $(document).ready(function () {
                 dataType: 'json',
                 data: JSON.stringify(data),
                 success: function (data) {
-                    var body = $('table#info');
-                    data = data.result;
+                    page(data, pageList);
                     if (data != null) {
+                        data = data.result;
+                        body.append("<caption>caption_info</caption>");//表头
                         body.append("<thead><tr><th>id</th><th>name</th><th>age</th></tr></thead>");//表格头
                         body.append("<tbody>");//表内容
                         $.each(data, function (index, item) {
                             OutputData(body, item);
                         })
                         body.append("</tbody>");//表内容
+                        body.append("<tfoot><tr><td>table_foot</td></tr></tfoot>")//表尾
                     }
                 },
                 error: function (msg) {
@@ -40,7 +50,7 @@ $(document).ready(function () {
     window.dekota = (window.dekota) ? window.dekota : dekota;
     $(function () {
         dekota.init();
-        dekota.listUser();
+        dekota.list(1, 5);
     });
 });
 

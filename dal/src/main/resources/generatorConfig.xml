@@ -20,6 +20,11 @@
             targetProject="src\main\java" type="XMLMAPPER" />
         <!--<table schema="CL_DEMO" tableName="user"/>-->
         <table schema="CL_DEMO" tableName="address"/>
-        <table schema="CL_DEMO" tableName="user"/>
+        <table schema="CL_DEMO" tableName="t_user"/>
+        <table schema="CL_DEMO" tableName="t_admin"/>
+        <table schema="CL_DEMO" tableName="t_group"/>
+        <table schema="CL_DEMO" tableName="t_group_role"/>
+        <table schema="CL_DEMO" tableName="t_group_user"/>
+        <table schema="CL_DEMO" tableName="t_role"/>
     </context>
 </generatorConfiguration>

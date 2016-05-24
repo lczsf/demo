@@ -10,12 +10,13 @@ import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
-import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -26,23 +27,31 @@ import java.util.Properties;
 public class PageInterceptor implements Interceptor {
     private static final Logger logger = Logger.getLogger(PageInterceptor.class);
 
-    public static final ThreadLocal<Page> localPage = new ThreadLocal<Page>();
+    public static final ThreadLocal<Map<String, Page>> localPage = new ThreadLocal<Map<String, Page>>();
 
     /**
      * @param page
      * @param
      */
-    public static void startPage(Page page) {
-        localPage.set(page);
+    public static void startPage(String flag, Page page) throws Exception {
+        if (localPage.get() == null) {
+            localPage.set(new HashMap<String, Page>());
+        }
+        if (localPage.get().get(flag) != null) {
+            Thread.currentThread().sleep(100);
+            if (localPage.get().get(flag) != null) {
+                throw new Exception("System busy!");
+            }
+        }
+        page.setStartRow((page.getPageNum()-1)*page.getPageSize());
+        localPage.get().put(flag, page);
     }
 
     /**
      * @return
      */
-    public static Page endPage() {
-        Page page = localPage.get();
-        localPage.remove();
-        return page;
+    public static void endPage(String flag) {
+        localPage.get().remove(flag);
     }
 
     @Override
@@ -63,13 +72,14 @@ public class PageInterceptor implements Interceptor {
         MappedStatement mappedStatement = (MappedStatement)
                 metaStatementHandler.getValue("delegate.mappedStatement");
 
-        if (localPage.get() != null) {
+        String sqlId = mappedStatement.getId();//com.company.mapper.UserMapperExt.selectForPage
+        if (localPage.get() != null && localPage.get().get(sqlId) != null) {
             BoundSql boundSql = (BoundSql) metaStatementHandler.getValue("delegate.boundSql");
             Object parameterObject = boundSql.getParameterObject();
             if (parameterObject == null) {
                 throw new NullPointerException("parameterObject is null!");
             } else {
-                Page page = localPage.get();
+                Page page = localPage.get().get(sqlId);
                 String sql = boundSql.getSql();
                 String pageSql = buildPageSql(sql, page);
                 metaStatementHandler.setValue("delegate.boundSql.sql", pageSql);
@@ -108,7 +118,6 @@ public class PageInterceptor implements Interceptor {
     public StringBuilder buildPageSqlForMysql(String sql, Page page) {
         StringBuilder pageSql = new StringBuilder(100);
         pageSql.append(sql);
-        page.setStartRow((page.getPageNum() - 1) * page.getPageSize());
         pageSql.append(" limit " + page.getStartRow() + "," + page.getPageSize());
         return pageSql;
     }

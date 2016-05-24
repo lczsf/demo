@@ -17,8 +17,12 @@
     <link rel="stylesheet" type="text/css" href="../uikit/css/uikit.gradient.min.css">
     <link rel="stylesheet" type="text/css" href="../uikit/css/components/form-advanced.css">
     <link rel="stylesheet" type="text/css" href="../uikit/css/components/notify.gradient.min.css">
+    <link rel="stylesheet" type="text/css" href="../uikit/fonts/fontawesome-webfont.ttf">
+    <link rel="stylesheet" type="text/css" href="../uikit/fonts/fontawesome-webfont.woff">
+    <link rel="stylesheet" type="text/css" href="../uikit/fonts/fontawesome-webfont.woff2">
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../uikit/js/components/notify.js"></script>
+    <script type="text/javascript" src="../js/template/common/common.js"></script>
     <script type="text/javascript" src="../js/template/user.js"></script>
 </head>
 <body>
@@ -33,9 +37,12 @@
     </div>
     <div id="list">
         <table id="info" class='uk-table'>
-            <caption>caption_info</caption>
-            <tfoot><tr><td>table_foot</td></tr></tfoot>
         </table>
+    </div>
+    <div id="page">
+        <ul id="pageList" class="uk-pagination uk-pagination-right">
+            <li><a href=""><i class="uk-icon-angle-double-left"></i></a></li>
+        </ul>
     </div>
 </div>
 </body>

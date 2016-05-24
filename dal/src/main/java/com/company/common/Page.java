@@ -8,8 +8,8 @@ import java.util.List;
 public class Page<E> {
     private int pageNum;
     private int pageSize = 10;
-    private int startRow= pageNum > 0 ? (pageNum - 1) * pageSize : 0;
-    private int endRow=pageNum * pageSize;
+    private int startRow;
+    private int endRow;
     private long total;
     private int pages;
     private List<E> result;
