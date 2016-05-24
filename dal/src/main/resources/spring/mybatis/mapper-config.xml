@@ -6,10 +6,10 @@
     <plugins>
         <plugin interceptor="com.company.common.PageInterceptor"></plugin>
     </plugins>
-    <mappers>
-        <mapper resource="mapper/TUserMapper.xml"/>
-        <mapper resource="mapper/TUserMapperExt.xml"/>
-        <mapper resource="mapper/AddressMapper.xml"/>
-        <mapper resource="mapper/AddressMapperExt.xml"/>
-    </mappers>
+    <!--<mappers>-->
+        <!--<mapper resource="mapper/TUserMapper.xml"/>-->
+        <!--<mapper resource="mapper/TUserMapperExt.xml"/>-->
+        <!--<mapper resource="mapper/AddressMapper.xml"/>-->
+        <!--<mapper resource="mapper/AddressMapperExt.xml"/>-->
+    <!--</mappers>-->
 </configuration>
