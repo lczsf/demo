@@ -17,12 +17,12 @@
     <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
-    <link rel="stylesheet" type="text/css" href="uikit/css/uikit.gradient.min.css">
-    <link rel="stylesheet" type="text/css" href="uikit/css/components/form-advanced.css">
-    <link rel="stylesheet" type="text/css" href="uikit/css/components/notify.gradient.min.css">
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="uikit/js/components/notify.js"></script>
-    <script type="text/javascript" src="js/template/address.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>uikit/css/uikit.gradient.min.css">
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>uikit/css/components/form-advanced.css">
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>uikit/css/components/notify.gradient.min.css">
+    <script type="text/javascript" src="<%=basePath%>js/jquery.js"></script>
+    <script type="text/javascript" src="<%=basePath%>uikit/js/components/notify.js"></script>
+    <script type="text/javascript" src="<%=basePath%>js/template/address.js"></script>
 </head>
 <body>
 <div

@@ -6,7 +6,7 @@
 	http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd">
     <display-name>springmvc</display-name>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>welcome.jsp</welcome-file>
     </welcome-file-list>
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -61,6 +61,11 @@
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.jpg</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.png</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
