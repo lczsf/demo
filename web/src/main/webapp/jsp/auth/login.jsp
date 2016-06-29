@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<%=basePath%>uikit/css/uikit.docs.min.css">
     <script src="<%=basePath%>js/jquery.js"></script>
     <script src="<%=basePath%>uikit/js/uikit.min.js"></script>
-    <script src="<%=basePath%>js/template/auth.js"></script>
+    <%--<script src="<%=basePath%>js/template/auth.js"></script>--%>
 
 </head>
 
@@ -25,15 +25,15 @@
     <div class="uk-vertical-align-middle" style="width: 250px;">
 
         <img class="uk-margin-bottom" width="140" height="120" src="<%=basePath%>resource/img/girl.png"/>
-        <form class="uk-form">
+        <form action="../j_spring_security_check" method="post">
             <div class="uk-form-row">
-                <input class="uk-width-1-1 uk-form-large" type="text" id="name">
+                USERNAME:<input type="text" name="j_username" value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}"/>
             </div>
             <div class="uk-form-row">
-                <input class="uk-width-1-1 uk-form-large" type="text" id="password" placeholder="Password">
+                PASSWORD:<input type="password" name="j_password" value="" />
             </div>
             <div class="uk-form-row">
-                <a id="loginOn" class="uk-width-1-1 uk-button uk-button-primary uk-button-large">Login</a>
+                <input type="submit" value="Login">
             </div>
             <div class="uk-form-row uk-text-small">
                 <label class="uk-float-left"><input type="checkbox"> Remember Me</label>

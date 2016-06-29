@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping(value = "/main")
-public class AdminController {
+public class MainController {
     @RequestMapping(value = "/admin")
     public String admin() {
         return "admin";
@@ -17,5 +17,10 @@ public class AdminController {
     @RequestMapping(value = "/user")
     public String user() {
         return "user";
+    }
+
+    @RequestMapping(value = "common")
+    public String common() {
+        return "common";
     }
 }

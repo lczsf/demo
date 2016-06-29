@@ -4,6 +4,7 @@ import com.company.model.TRole;
 import com.company.model.TUser;
 import com.company.service.UserService;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,11 +26,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        UserDetails user = null;
+        UserDetails user;
         try {
 
-            // 搜索数据库以匹配用户登录名.
-            // 我们可以通过dao使用JDBC来访问数据库
             TUser tUser = userService.queryByUserName(s);
 
             // Populate the Spring User object with details from the dbUser
@@ -37,8 +36,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             // getAuthorities() will translate the access level to the correct
             // role type
 
-            user = new User(tUser.getName(), tUser.getPassword()
-                    .toLowerCase(), true, true, true, true,
+            user = new User(tUser.getName(), tUser.getPassword().toLowerCase(), true, true, true, true,
                     getAuthorities(userService.queryRolesByUserName(s)));
 
         } catch (Exception e) {
@@ -49,15 +47,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     /**
-     * 获得访问角色权限
-     *
      * @param tRoles
      * @return
      */
     public Collection<GrantedAuthority> getAuthorities(List<TRole> tRoles) {
 
-        List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(2);
-
+        List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
+        authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         for (TRole tRole : tRoles) {
             authList.add(new SimpleGrantedAuthority(tRole.getRole()));
         }

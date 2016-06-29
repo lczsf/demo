@@ -7,14 +7,12 @@ $(document).ready(function () {
         init: function () {
             $("#btnList").click(dekota.list);
         },
+        //用户列表
         list: function (pageNum, pageSize) {
             //var data = {address: {id: 1, content: 5}};
             var age = $("input#age").val().trim();
-            if (age != '') {
-                var data = {"user": {"age": age}, "page": {"pageNum": 1, "pageSize": 5}};
-            } else {
-                var data = {"page": {"pageNum": pageNum, "pageSize": pageSize}};//pageNum
-            }
+            var name = $("input#name").val().trim();
+            var data = {"tUser": {"age": age, "name": name}, "page": {"pageNum": 1, "pageSize": 5}};
             var pageList = $('ul#pageList');
             pageList.empty();
             var body = $('table#info');

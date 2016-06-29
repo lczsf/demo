@@ -32,6 +32,7 @@
         <fieldset class="uk-form">
             <legend align="left">Condition</legend>
             Age:<input id="age" type="text" placeholder="">
+            Name:<input id="name" type="text" placeholder="">
             <button id="btnList" class="uk-button">Query</button>
         </fieldset>
     </div>
